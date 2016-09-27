@@ -7,7 +7,7 @@ from . import models
 # Create your views here.
 def reroute(request):
 	if request.session['user']:
-		return redirect(rever('wishlist:wishlist_index'))
+		return redirect(reverse('wishlist:wishlist_index'))
 	return redirect(reverse('logreg:logreg_index'))
 
 def index(request):
