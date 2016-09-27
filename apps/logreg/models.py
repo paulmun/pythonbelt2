@@ -11,18 +11,18 @@ class UserManager(models.Manager):
 	def register(self, **kwargs):
 		errors = {}
 		
-		fname = kwargs['fname']
-		lname = kwargs['lname']
+		name = kwargs['name']
+		username = kwargs['username']
 		email = kwargs['email']
 		password = kwargs['password']
 		cpassword = kwargs['cpassword']
 		bday = kwargs['bday']
 		hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 		
-		if NAME_REGEX.match(fname) or len(fname) < 3:
-			errors['fname'] = 'Please enter a valid first name.'
-		if NAME_REGEX.match(lname) or len(fname) < 3:
-			errors['lname'] = 'Please enter a valid last name.'
+		if NAME_REGEX.match(name) or len(name) < 3:
+			errors['name'] = 'Please enter a valid first name.'
+		if NAME_REGEX.match(username) or len(name) < 3:
+			errors['username'] = 'Please enter a valid last name.'
 		if not EMAIL_REGEX.match(email):
 			errors['email'] = 'Please enter a valid email.'
 		elif self.filter(email=email):
@@ -36,7 +36,7 @@ class UserManager(models.Manager):
 		if errors:
 			return (False, errors)
 		else:
-			newUser = self.create(fname=fname, lname=lname, email=email, password=hashed, bday=bday)
+			newUser = self.create(name=name, username=username, email=email, password=hashed, bday=bday)
 			return (True, newUser.id)
 
 	def login(self, **kwargs):
@@ -60,12 +60,12 @@ class UserManager(models.Manager):
 		return (False, errors)
 
 	def everyoneElse(self, id):
-		return self.exclude(id=id).annotate(history=Count('pokee'))
+		return self.exclude(id=id)
 			
 
 class Users(models.Model):
-	fname = models.CharField(max_length=45)
-	lname = models.CharField(max_length=45)
+	name = models.CharField(max_length=45)
+	username = models.CharField(max_length=45)
 	email = models.CharField(max_length=45)
 	password = models.CharField(max_length=80)
 	bday = models.DateField(auto_now=False)

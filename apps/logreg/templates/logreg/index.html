@@ -9,12 +9,12 @@
 	<h3>Register</h3>
 	<form action="/register" method="post">
 	{% csrf_token %}
-		<p>First Name</p>
-		<p>{{errors.fname}}</p>
-		<input type="text" name="fname" value="{{fname}}">
-		<p>Last Name</p>
-		<p>{{errors.lname}}</p>
-		<input type="text" name="lname" value="{{lname}}">
+		<p>Name</p>
+		<p>{{errors.name}}</p>
+		<input type="text" name="name" value="{{name}}">
+		<p>Username</p>
+		<p>{{errors.username}}</p>
+		<input type="text" name="username" value="{{username}}">
 		<p>Email</p>
 		<p>{{errors.email}}</p>
 		<input type="text" name="email" value="{{email}}">

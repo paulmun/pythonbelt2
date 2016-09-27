@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Wishlist</title>
+</head>
+<body>
+	<header>
+		<h2>{{item.item}}</h2>
+		<a href="{% url 'wishlist:wishlist_index' %}">Home</a>
+		<a href="{% url 'logreg:logreg_logout' %}">Logout</a>
+	</header>
+	<p>Users who added this product/item under their wishlist:</p>
+	{% for user in users %}
+		<p>{{user.user.name}}</p>
+	{% endfor %}
+</body>
+</html>
