@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login and Registration</title>
+</head>
+<body>
+	<h2>Login or Register</h2>
+	<h3>Register</h3>
+	<form action="/register" method="post">
+	{% csrf_token %}
+		<p>First Name</p>
+		<p>{{errors.fname}}</p>
+		<input type="text" name="fname" value="{{fname}}">
+		<p>Last Name</p>
+		<p>{{errors.lname}}</p>
+		<input type="text" name="lname" value="{{lname}}">
+		<p>Email</p>
+		<p>{{errors.email}}</p>
+		<input type="text" name="email" value="{{email}}">
+		<p>Password</p>
+		<p>{{errors.password}}</p>
+		<input type="text" name="pass">
+		<p>Confirm Password</p>
+		<input type="text" name="cPass">
+		<p>Date of Birth</p>
+		<p>{{errors.bday}}</p>
+		<input type="date" name="bday">
+		<input type="submit" value="Register">
+	</form>
+	<p>Already have an account?</p>
+	<h3>Login</h3>
+	<form action="/login" method="post">
+	{% csrf_token %}
+		<p>Email</p>
+		<p>{{errors2.email}}</p>
+		<input type="text" name="email">
+		<p>Password</p>
+		<p>{{errors2.password}}</p>
+		<input type="text" name="pass">
+		<input type="submit" value="Log In">
+	</form>
+</body>
+</html>
